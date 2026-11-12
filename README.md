@@ -2,16 +2,50 @@
 
 **Feather** is a lightweight, user-friendly Windows desktop application that simplifies network IP configuration management. Say goodbye to navigating complex Windows networking panels—Feather gives you instant, one-click control over your Ethernet and Wi-Fi IP settings.
 
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)
+![Windows](https://img.shields.io/badge/Windows-10%20%2F%2011-0078D6?logo=windows&logoColor=white)
+![GUI](https://img.shields.io/badge/GUI-Tkinter-2F5BEA)
+![Config](https://img.shields.io/badge/Config-JSON-2F5BEA)
+![Distribution](https://img.shields.io/badge/Distribution-Portable%20Folder-237A57)
+
+<p align="center">
+  <img src="assets/screenshots/main-window.png" alt="Feather main window" width="360">
+</p>
+
 ---
 
 ## Table of Contents
-1. [How It Works](#how-it-works)
-2. [Key Features](#key-features)
-3. [Industry Applications](#industry-applications)
-4. [Use Cases by Sector](#use-cases-by-sector)
-5. [Benefits](#benefits)
-6. [Installation & Setup](#installation--setup)
-7. [Configuration Guide](#configuration-guide)
+1. [Screenshots](#screenshots)
+2. [How It Works](#how-it-works)
+3. [Key Features](#key-features)
+4. [Industry Applications](#industry-applications)
+5. [Use Cases by Sector](#use-cases-by-sector)
+6. [Benefits](#benefits)
+7. [Installation & Setup](#installation--setup)
+8. [Configuration Guide](#configuration-guide)
+
+---
+
+## Screenshots
+
+### Main Window — Apply a configuration in one click
+
+<p align="center">
+  <img src="assets/screenshots/main-window.png" alt="Feather main window showing network status, saved configurations and activity log" width="420">
+</p>
+
+Pick Ethernet or Wi-Fi, see the live connection status and current IP, choose a
+saved profile, ping it, then apply it or revert to DHCP. Every action is written
+to the activity log at the bottom of the window.
+
+### Ping Monitor — Keep an eye on your devices
+
+<p align="center">
+  <img src="assets/screenshots/ping-monitor.png" alt="Feather ping monitor with device list and reachability status" width="620">
+</p>
+
+Continuously ping a list of devices, group them, and see reachability, response
+time and packet size update live.
 
 ---
 
@@ -24,7 +58,7 @@ Feather streamlines the IP configuration process into simple, intuitive steps:
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  1. LAUNCH                                                  │
-│  Start Feather (runs with admin privileges automatically)   │
+│  Start Feather (opens instantly, no UAC prompt)             │
 └────────────────┬────────────────────────────────────────────┘
                  ↓
 ┌─────────────────────────────────────────────────────────────┐
@@ -38,8 +72,8 @@ Feather streamlines the IP configuration process into simple, intuitive steps:
 └────────────────┬────────────────────────────────────────────┘
                  ↓
 ┌─────────────────────────────────────────────────────────────┐
-│  4. SELECT OR CREATE CONFIGURATION                          │
-│  Pick from saved profiles or add a new one                  │
+│  4. SELECT A CONFIGURATION                                  │
+│  Pick one of your saved profiles                            │
 └────────────────┬────────────────────────────────────────────┘
                  ↓
 ┌─────────────────────────────────────────────────────────────┐
@@ -77,17 +111,19 @@ Feather streamlines the IP configuration process into simple, intuitive steps:
 | **Profile Management** | Save unlimited IP configurations with custom names |
 | **One-Click Apply** | Switch between saved configurations instantly |
 | **DHCP Toggle** | Revert to automatic IP assignment with a single click |
-| **Network Monitoring** | Real-time display of current IP, subnet, and gateway |
+| **Network Monitoring** | Live connection status with the current IP |
 | **Ping Testing** | Built-in ping utility to verify device connectivity |
-| **Validation** | Automatic validation of IP addresses and network settings |
-| **GUI Configuration** | Create, edit, and delete profiles without touching JSON files |
-| **Activity Log** | Complete history of all configuration changes |
-| **Auto-Detection** | Identifies when a configuration is already active |
-| **Zero Dependencies** | Runs offline—no internet required |
+| **Change Detection** | Identifies when a configuration is already active |
+| **Activity Log** | History of every change made in the session |
+| **Ping Monitor** | Continuously watch a list of devices and their response times |
+| **Fast Startup** | Opens in about a second, no unpacking delay |
+| **No Internet Needed** | Everything runs locally, offline |
 
 ### 💾 Configuration Storage
 
-All configurations are stored locally in `config.json` with the following structure:
+Configurations are stored as JSON, per user, in `%LOCALAPPDATA%\IPConfigurationTool\config.json`
+(the copies shipped in the repository are only first-run seeds, so the app also
+works from read-only locations). Each entry has the following structure:
 
 ```json
 {
@@ -249,9 +285,9 @@ Feather solves real-world networking challenges across multiple industries. Here
 - Reduce setup time for new devices by 80%
 
 ### 🎯 **Reliability**
-- Native Windows API integration ensures compatibility
-- Automatic validation prevents misconfiguration
-- Built-in verification confirms successful changes
+- Native Windows networking commands for compatibility
+- Confirmation dialog before every IP change
+- Built-in verification shows the new IP after applying
 
 ### 👥 **Ease of Use**
 - Intuitive graphical interface—no command line knowledge required
@@ -340,20 +376,10 @@ Feather solves real-world networking challenges across multiple industries. Here
 
 ### Creating a Configuration Profile
 
-#### Option 1: GUI (Recommended)
-1. Launch Feather
-2. Click **"Add Configuration"**
-3. Enter:
-   - **Name**: Descriptive profile name (e.g., "Office Network", "Lab Setup")
-   - **Network Type**: Ethernet or Wi-Fi
-   - **IP Address**: Static IP (e.g., 192.168.1.101)
-   - **Subnet Mask**: Network subnet (e.g., 255.255.255.0)
-   - **Gateway**: Router gateway (e.g., 192.168.1.1)
-   - **Port** (Optional): Application port number
-4. Click **"Save"**
-
-#### Option 2: Manual JSON Edit
-Edit `config.json` directly:
+Profiles live in `config.json`. In the installed app that file is
+`%LOCALAPPDATA%\IPConfigurationTool\config.json` (created on first run); when
+running from source it is the `config.json` in the project folder. Add an entry
+to the `configurations` array:
 
 ```json
 {
