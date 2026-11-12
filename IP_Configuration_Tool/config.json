@@ -1,0 +1,36 @@
+{
+  "configurations": [
+    {
+      "name": "Example Ethernet Device",
+      "network": "Ethernet",
+      "ip": "192.168.1.101",
+      "subnet": "255.255.255.0",
+      "gateway": "192.168.1.1",
+      "port": ""
+    },
+    {
+      "name": "Example Wi-Fi Device",
+      "network": "Wi-Fi",
+      "ip": "192.168.1.102",
+      "subnet": "255.255.255.0",
+      "gateway": "192.168.1.1",
+      "port": "8080"
+    },
+    {
+      "name": "Example Wi-Fi Device",
+      "network": "Wi-Fi",
+      "ip": "192.168.1.106",
+      "subnet": "255.255.255.0",
+      "gateway": "192.168.1.1",
+      "port": "8080"
+    },
+    {
+      "name": "Example Wi-Fi Device",
+      "network": "Wi-Fi",
+      "ip": "192.168.1.108",
+      "subnet": "255.255.255.0",
+      "gateway": "192.168.1.1",
+      "port": "8080"
+    }
+  ]
+}
